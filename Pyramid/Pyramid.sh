@@ -68,7 +68,7 @@ chars=("*" "+" "o" "." "~" "#" "@")
 tput civis
 
 # Lancer les confettis
-for ((i = 0; i < 200; i++)); do
+for ((i = 0; i < 300; i++)); do
     x=$((RANDOM % cols))
     y=$((RANDOM % lines))
 
