@@ -10,4 +10,4 @@ Et c'est gagner !!
 Vous ne pouvez évidement pas donner un chiffre en dehors de la limites 1/20. En ce qui conserne la position du caractère spécial, Vous devez inscricre strictement la bonne réponse et pas un autres caractère. Si vous ne gagnez toujours pas reessayez compter différement.
 
 ## Mention
-[[https://github.com/camille147|@camille147]] à participer à ce mini jeu.
+https://github.com/camille147 à participer à ce mini jeu.
