@@ -17,6 +17,7 @@ exit 1
 fi
 
 randomLine=$(( (RANDOM%number) + 1))
+randomColumn=0
 
 for (( i=1; i<=number; i++))
 do
@@ -33,11 +34,12 @@ do
     caracter="\x$randomNumber"
 
     symbol=$((2 * i - 1))
-    randomColumn=$(( (RANDOM%symbol) +1))
+    randomCol=$(( (RANDOM%symbol) +1))
     for (( k=1; k<=symbol; k++))
     do
-        if [ "$i" -eq "$randomLine" -a "$k" -eq "$randomColumn" ];
+        if [ "$i" -eq "$randomLine" -a "$k" -eq "$randomCol" ];
             then
+            randomColumn="$randomCol"
             echo -n -e "$color$caracter"
         else
             echo -n -e "$color*"
@@ -55,34 +57,34 @@ echo "Et sa colonne :"
 read colAnswer
 
 if [ "$lineAnswer" -eq "$randomLine" -a "$colAnswer" -eq "$randomColumn" ];
-then
-echo "Bravo tu as gagné ! A bientôt pour de nouvelles aventures !"
+    then
+    echo "Bravo tu as gagné ! A bientôt pour de nouvelles aventures !"
 
-cols=$(tput cols)
-lines=$(tput lines)
+    cols=$(tput cols)
+    lines=$(tput lines)
 
-colors=(31 32 33 34 35 36 91 92 93 94 95 96)
+    colors=(31 32 33 34 35 36 91 92 93 94 95 96)
 
-chars=("*" "+" "o" "." "~" "#" "@")
+    chars=("*" "+" "o" "." "~" "#" "@")
 
-tput civis
+    tput civis
 
-# Lancer les confettis
-for ((i = 0; i < 300; i++)); do
-    x=$((RANDOM % cols))
-    y=$((RANDOM % lines))
+    # Lancer les confettis
+    for ((i = 0; i < 300; i++)); do
+        x=$((RANDOM % cols))
+        y=$((RANDOM % lines))
 
-    color=${colors[$RANDOM % ${#colors[@]}]}
-    char=${chars[$RANDOM % ${#chars[@]}]}
+        color=${colors[$RANDOM % ${#colors[@]}]}
+        char=${chars[$RANDOM % ${#chars[@]}]}
 
-    tput cup $y $x
-    echo -ne "\033[1;${color}m$char\033[0m"
+        tput cup $y $x
+        echo -ne "\033[1;${color}m$char\033[0m"
 
-    sleep 0.02
-done
+        sleep 0.02
+    done
 
-tput cnorm
-tput cup $lines 0
+    tput cnorm
+    tput cup $lines 0
 
 else
 echo "Oh vous avez perdu ! Vous êtes désormais coincé dans la pyramide, relancez le jeu pour tenter de gagner !"
